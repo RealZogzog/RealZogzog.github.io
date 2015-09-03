@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="UTF-8" />
+  <title>ZuluClock Configuration</title>
+  <link rel='stylesheet' type='text/css' href='css/slate.min.css'>
+  <script src='js/slate.min.js'></script>
+  <style>
+  .title {
+    padding: 15px 10px;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 1.2em;
+    font-weight: 500;
+    color: #888888;
+    text-align: center;
+  }
+  </style>
+  </head>
+
+  <body>
+    <h1 class='title'>ZuluClock Configuration</h1>
+    
+    <div class='item-container'>
+      <div class='item-container-content'>
+        <div class='item'>
+          Please choose the settings you would like applied to ZuluClock watch-face.
+        </div>
+      </div>
+    </div>
+
+    <div class='item-container'>
+    
+      <div class='item-container-header'>Colors</div>
+      
+      <div class='item-container-content'>
+        <label class='item'>
+          Local Time Foreground
+          <input id='foreground_color_picker' type='text' class='item-color item-color-sunny' value='#000000'>
+        </label>
+      </div>
+      
+      <div class='item-container-content'>
+        <label class='item'>
+          Local Time Background
+          <input id='background_color_picker' type='text' class='item-color item-color-sunny' value='#FFFFFF'>
+        </label>
+      </div>
+      
+      <div class='item-container-content'>
+        <label class='item'>
+          UTC Time Foreground
+          <input id='foreground2_color_picker' type='text' class='item-color item-color-sunny' value='#000000'>
+        </label>
+      </div>
+      
+      <div class='item-container-content'>
+        <label class='item'>
+          UTC Time Background
+          <input id='background2_color_picker' type='text' class='item-color item-color-sunny' value='#FFFFFF'>
+        </label>
+      </div>
+      
+      <div class='item-container-content'>
+        <label class='item'>
+          Separator Line
+          <input id='line_color_picker' type='text' class='item-color item-color-sunny' value='#000000'>
+        </label>
+      </div>
+
+      <div class='item-container-footer'>
+        Caution: some colors combinations can render the watchface unreadable !
+      </div>
+
+		<div class='item-container-content'>
+		</div>
+
+    </div>
+    
+	<div class='item-container'>
+    
+      <div class='item-container-header'>Layout</div>
+      
+      <div class='item-container-content'>
+        <label class='item'>
+          Show seconds
+          <input id='dsec_checkbox' type='checkbox' class='item-toggle' name="toggle-2" checked>
+        </label>
+        <div class='item-container-footer'>
+        Hiding the seconds will offer more battery life...
+      </div>
+      </div>
+      
+      <div class='item-container-content'>
+        <label class='item'>
+          Show date
+          <input id='ddat_checkbox' type='checkbox' class='item-toggle' name="toggle-3" checked>
+        </label>
+      </div>
+      
+		<div class='item-container-content'>
+        <label class='item'>
+          Show time-zones
+          <input id='dzon_checkbox' type='checkbox' class='item-toggle' name="toggle-3" checked>
+        </label>
+      </div>
+      
+      <div class='item-container-content'>
+        <label class='item'>
+          Show infos
+          <input id='dinf_checkbox' type='checkbox' class='item-toggle' name="toggle-4" checked>
+        </label>
+      </div>
+      
+      <div class='item-container-content'>
+		</div>
+      
+    </div>
+    
+    <div class='item-container'>
+    
+      <div class='item-container-header'>Settings</div>
+      
+      <div class='item-container-content'>
+        <label class='item'>
+          12 Hours Mode
+          <input id='12_hours_checkbox' type='checkbox' class='item-toggle'>
+        </label>
+        <div class='item-container-footer'>
+        Setting the 12 Hours Mode will offer more battery life...
+      </div>
+      </div>
+      
+    </div>
+
+<div class="item-container">
+  <div class="button-container">
+    <input id='reset_button' type="button" class="item-button" value="Default Settings">
+  </div>
+</div>
+
+<div class='item-container'>
+	<div class='button-container'>
+	  <input id='submit_button' type='button' class='item-button' value='SUBMIT'>
+	</div>
+</div>
+
+  </body>
+  <script>
+  function getConfigData() {
+  	var backgroundColorPicker = document.getElementById('background_color_picker');
+  	var background2ColorPicker = document.getElementById('background2_color_picker');
+  	var foregroundColorPicker = document.getElementById('foreground_color_picker');
+  	var foreground2ColorPicker = document.getElementById('foreground2_color_picker');
+  	var lineColorPicker = document.getElementById('line_color_picker');
+  	var h12Checkbox = document.getElementById('12_hours_checkbox');
+  	
+  	var dsecCheckbox = document.getElementById('dsec_checkbox');
+  	var ddatCheckbox = document.getElementById('ddat_checkbox');
+  	var dzonCheckbox = document.getElementById('dzon_checkbox');
+  	var dinfCheckbox = document.getElementById('dinf_checkbox');
+
+  	var options = {
+  		'background_color': backgroundColorPicker.value,
+  		'background2_color': background2ColorPicker.value,
+  		'foreground_color': foregroundColorPicker.value,
+  		'foreground2_color': foreground2ColorPicker.value,
+  		'line_color': lineColorPicker.value,
+  		'h12': h12Checkbox.checked,
+  		'dsec':dsecCheckbox.checked,
+  		'ddat':ddatCheckbox.checked,
+  		'dzon':dzonCheckbox.checked,
+  		'dinf':dinfCheckbox.checked
+  	};
+
+  	// Save for next launch
+  	localStorage['background_color'] = options['background_color'];
+  	localStorage['background2_color'] = options['background2_color'];
+  	localStorage['foreground_color'] = options['foreground_color'];
+  	localStorage['foreground2_color'] = options['foreground2_color'];
+  	localStorage['line_color'] = options['line_color'];
+  	localStorage['h12'] = options['h12'];
+  	localStorage['dsec'] = options['dsec'];
+  	localStorage['ddat'] = options['ddat'];
+  	localStorage['dzon'] = options['dzon'];
+  	localStorage['dinf'] = options['dinf'];
+
+  	console.log('Got options: ' + JSON.stringify(options));
+  	return options;
+  }
+
+  function getQueryParam(variable, defaultValue) {
+  	var query = location.search.substring(1);
+  	var vars = query.split('&');
+  	for (var i = 0; i < vars.length; i++) {
+  		var pair = vars[i].split('=');
+  		if (pair[0] === variable) {
+  			return decodeURIComponent(pair[1]);
+  		}
+  	}
+  	return defaultValue || false;
+  }
+
+  var submitButton = document.getElementById('submit_button');
+  submitButton.addEventListener('click', function() {
+  	console.log('Submit');
+
+  	// Set the return URL depending on the runtime environment
+  	var return_to = getQueryParam('return_to', 'pebblejs://close#');
+  	document.location = return_to + encodeURIComponent(JSON.stringify(getConfigData()));
+  });
+
+  var resetButton = document.getElementById('reset_button');
+  resetButton.addEventListener('click', function() {
+  	console.log('Reset');
+
+  	var backgroundColorPicker = document.getElementById('background_color_picker');
+  	var background2ColorPicker = document.getElementById('background2_color_picker');
+  	var foregroundColorPicker = document.getElementById('foreground_color_picker');
+  	var foreground2ColorPicker = document.getElementById('foreground2_color_picker');
+  	var lineColorPicker = document.getElementById('line_color_picker');
+  	var h12Checkbox = document.getElementById('12_hours_checkbox');
+  	
+  	var dsecCheckbox = document.getElementById('dsec_checkbox');
+  	var ddatCheckbox = document.getElementById('ddat_checkbox');
+  	var dzonCheckbox = document.getElementById('dzon_checkbox');
+  	var dinfCheckbox = document.getElementById('dinf_checkbox');
+
+  	h12Checkbox.checked = false;
+  	dsecCheckbox.checked = true;
+  	ddatCheckbox.checked = true;
+  	dzonCheckbox.checked = true;
+  	dinfCheckbox.checked = true;
+  	backgroundColorPicker.value = '0xFFFFFF';
+  	background2ColorPicker.value = '0xFFFFFF';
+  	foregroundColorPicker.value = '0x000000';
+  	foreground2ColorPicker.value = '0x000000';
+  	lineColorPicker.value = '0x000000';
+  	
+
+  	// Save for next launch
+  	localStorage['background_color'] = '0xFFFFFF';
+  	localStorage['background2_color'] = '0xFFFFFF';
+  	localStorage['foreground_color'] = '0x000000';
+  	localStorage['foreground2_color'] = '0x000000';
+  	localStorage['line_color'] = '0x000000';
+  	localStorage['h12'] = false;
+	localStorage['dsec'] = true;
+	localStorage['ddat'] = true;
+	localStorage['dzon'] = true;
+	localStorage['dinf'] = true;
+  	window.location.reload();
+
+  });
+
+  (function() {
+  	var backgroundColorPicker = document.getElementById('background_color_picker');
+  	var background2ColorPicker = document.getElementById('background2_color_picker');
+  	var foregroundColorPicker = document.getElementById('foreground_color_picker');
+  	var foreground2ColorPicker = document.getElementById('foreground2_color_picker');
+  	var lineColorPicker = document.getElementById('line_color_picker');
+  	var h12Checkbox = document.getElementById('12_hours_checkbox');
+  	
+  	var dsecCheckbox = document.getElementById('dsec_checkbox');
+  	var ddatCheckbox = document.getElementById('ddat_checkbox');
+  	var dzonCheckbox = document.getElementById('dzon_checkbox');
+  	var dinfCheckbox = document.getElementById('dinf_checkbox');
+
+  	// Load any previously saved configuration, if available
+  	if (localStorage['h12']) {
+  		h12Checkbox.checked = JSON.parse(localStorage['h12']);
+  		
+  		dsecCheckbox.checked = JSON.parse(localStorage['dsec']);
+  		ddatCheckbox.checked = JSON.parse(localStorage['ddat']);
+  		dzonCheckbox.checked = JSON.parse(localStorage['dzon']);
+  		dinfCheckbox.checked = JSON.parse(localStorage['dinf']);
+  		
+  		backgroundColorPicker.value = localStorage['background_color'];
+  		background2ColorPicker.value = localStorage['background2_color'];
+  		foregroundColorPicker.value = localStorage['foreground_color'];
+  		foreground2ColorPicker.value = localStorage['foreground2_color'];
+  		lineColorPicker.value = localStorage['line_color'];
+  	}
+  })();
+
+  </script>
+</html>
