@@ -1,0 +1,4 @@
+git add --all
+git commit -m "mazeclock commit name"
+git push -u origin master
+s7
